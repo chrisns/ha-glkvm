@@ -14,6 +14,10 @@ Fork of 0.3.0 for the GL-RM4PE (Comet X) and for units with two-factor authentic
 - `glkvm.set_active_port` switches a Comet X to a port, numbered from 1 as printed on the unit. It refuses on a unit without the switch and for a port the unit does not have.
 - A Comet X announcing itself over mDNS (`mn=rm4pe`) is discovered, as the Comet Pro is.
 
+### Fixed
+
+- A unit set up by a name its certificate carries, with the certificate check on, is no longer moved by discovery to the bare IP address it announces. The pin matched there, but the certificate is not valid for that address, so every poll after the move failed verification. An entry that verifies the certificate now follows a discovered address only when the certificate is valid for it.
+
 ### Changed
 
 - A poll reads eight sections; the port switch is the eighth. Only a unit unreachable for all eight is unavailable.
